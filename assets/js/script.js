@@ -1,4 +1,4 @@
-var pos = 0;
+var score = 0;
 var correct = 0;
 var test, test_status, question;
 var div = document.getElementById("answers"); 
@@ -26,27 +26,19 @@ var questionList = [
       }
     ];
 
-    function renderQuestion(){
+      function renderQuestion(){
         test = document.getElementById("displayQues")
-        if(pos >= questionList.length){
-          test.innerHTML = "<h2>You got "+correct+" of "+questionList.length+" questions correct</h2>";
-          document.getElementById("test_status").innerHTML = "Test completed";
-          // resets the variable to allow users to restart the test
-          pos = 0;
+        if(score >= questionList.length){
+          score = 0;
           correct = 0;
-          // stops rest of renderQuestion function running when test is completed
           return false;
         }
-        //get("test_status").innerHTML = "Question "+(pos+1)+" of "+questionList.length;
         
-        question = questionList[pos].question;
-        // display the question
+        question = questionList[score].question;
+      
         test.textContent = question; 
 
-        // display the answer options
-
-        //Looping through all answer options 
-        questionList[pos].choices.forEach(function (choice, i){
+        questionList[score].choices.forEach(function (choice, i){
           console.log(choice)
 
           var inputRadio=document.createElement("input"); 
@@ -63,13 +55,11 @@ var questionList = [
           label.append(inputRadio); 
 
           console.log(inputRadio); 
-          console.log(div);
-          //append the radio buttons to the label 
+          console.log(div); 
           div.append(label);
 
         })
-        // the += appends to the data we started on the line above
-       pos=pos+1; 
+       score=score+1; 
 
     };
 
